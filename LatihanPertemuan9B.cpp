@@ -31,11 +31,38 @@ public:
 
 class Petugas {
 private:
-    string nama;
-public:
-    Petugas();
-    Petugas(string);
+    string namaPetugas;
+    int idPetugas;
+    string levelAkses;
 
-    void prosesPinjam(Buku*, Peminjam*);
-    void prosesKembali(Buku*, Peminjam*);
+public:
+    Petugas(string n, int i, string l) : namaPetugas(n), idPetugas(i), levelAkses(l) {}
+
+    void prosesPinjam(Buku* b, Peminjam* p) {
+        if (!b->dipinjam) {
+            b->dipinjam = true;
+            p->totalPinjaman++;
+            cout << "Buku \"" << b->judul << "\" berhasil dipinjam oleh " << p->nama << endl;
+        } else {
+            cout << "Buku \"" << b->judul << "\" sedang dipinjam." << endl;
+        }
+    }
+
+    void prosesKembali(Buku *b, Peminjam *p) {
+        if (b->dipinjam) {
+            b->dipinjam = false;
+            p->totalPinjaman--;
+            cout << "Buku \"" << b->judul << "\" dikembalikan oleh " << p->nama << endl;
+        } else {
+            cout << "Buku \"" << b->judul << "\" tidak sedang dipinjam." << endl;
+        }
+    }
+
+    void setLevelAkses(string level) {
+        levelAkses = level;
+        cout << "Level akses petugas diubah menjadi: " << levelAkses << endl;
+    }
+
+    friend class Admin; // Admin jadi friend class Petugas
 };
+
