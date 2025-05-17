@@ -63,6 +63,12 @@ public:
         cout << "Level akses petugas diubah menjadi: " << levelAkses << endl;
     }
 
-    friend class Admin; // Admin jadi friend class Petugas
+    friend class Admin; 
 };
 
+class Admin {
+public:
+    void lihatAksesPetugas(const Petugas &p) {
+        cout << "Nama Petugas: " << p.namaPetugas << ", Level Akses: " << p.levelAkses << endl;
+    }
+};
