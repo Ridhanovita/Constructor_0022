@@ -26,5 +26,16 @@ public:
     Peminjam(string);
 
     friend class Petugas;
-    friend void lihatStatistik(*Peminjam);
+    friend void lihatStatistik(Peminjam*);
+};
+
+class Petugas {
+private:
+    string nama;
+public:
+    Petugas();
+    Petugas(string);
+
+    void prosesPinjam(Buku*, Peminjam*);
+    void prosesKembali(Buku*, Peminjam*);
 };
