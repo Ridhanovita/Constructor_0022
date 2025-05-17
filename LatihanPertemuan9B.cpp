@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-class Peminjam;
+class Peminjam; // forward declaration
 
 class Buku {
 private:
@@ -13,20 +13,21 @@ private:
 public:
     Buku(string j, string p) : judul(j), penulis(p), dipinjam(false) {}
 
-    friend class Petugas;
-    friend void lihatStatistik(const Buku *b); 
+    friend class Petugas; // friend class
+    friend void lihatStatistik(const Buku *b); // friend function
 };
 
 class Peminjam {
 private:
     string nama;
+    int id;
     int totalPinjaman;
-public:
-    Peminjam();
-    Peminjam(string);
 
-    friend class Petugas;
-    friend void lihatStatistik(Peminjam*);
+public:
+    Peminjam(string n, int i) : nama(n), id(i), totalPinjaman(0) {}
+
+    friend class Petugas; // friend class
+    friend void lihatStatistik(const Peminjam *p); // friend function
 };
 
 class Petugas {
@@ -38,7 +39,7 @@ private:
 public:
     Petugas(string n, int i, string l) : namaPetugas(n), idPetugas(i), levelAkses(l) {}
 
-    void prosesPinjam(Buku* b, Peminjam* p) {
+    void prosesPinjam(Buku *b, Peminjam *p) {
         if (!b->dipinjam) {
             b->dipinjam = true;
             p->totalPinjaman++;
@@ -63,7 +64,7 @@ public:
         cout << "Level akses petugas diubah menjadi: " << levelAkses << endl;
     }
 
-    friend class Admin; 
+    friend class Admin;
 };
 
 class Admin {
@@ -72,3 +73,15 @@ public:
         cout << "Nama Petugas: " << p.namaPetugas << ", Level Akses: " << p.levelAkses << endl;
     }
 };
+
+
+void lihatStatistik(const Buku *b) {
+    cout << "[Statistik Buku] Judul: " << b->judul << ", Status: " 
+         << (b->dipinjam ? "Dipinjam" : "Tersedia") << endl;
+}
+
+void lihatStatistik(const Peminjam *p) {
+    cout << "[Statistik Peminjam] Nama: " << p->nama 
+         << ", Total Pinjaman: " << p->totalPinjaman << endl;
+}
+
