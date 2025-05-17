@@ -23,6 +23,10 @@ mahasiswa :: mahasiswa(int iNim){
 nim=iNim;
 }
 
+mahasiswa :: mahasiswa(int iNama){
+nim=iNama;
+}
+
 mahasiswa :: mahasiswa(int iNim, string iNama){
 nim=iNim;
 nama=iNama;
@@ -42,6 +46,6 @@ int main(){
     mhs2.cetak();
     mhs3.cetak();
     mhs4.cetak();
-    
+
     return 0;
 }
