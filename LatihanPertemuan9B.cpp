@@ -85,3 +85,22 @@ void lihatStatistik(const Peminjam *p) {
          << ", Total Pinjaman: " << p->totalPinjaman << endl;
 }
 
+int main() {
+    Buku buku1("Algoritma C++", "Budi");
+    Peminjam peminjam1("Andi", 101);
+    Petugas petugas1("Dina", 201, "Standar");
+    Admin admin1;
+
+    petugas1.prosesPinjam(&buku1, &peminjam1);
+    lihatStatistik(&buku1);
+    lihatStatistik(&peminjam1);
+
+    petugas1.prosesKembali(&buku1, &peminjam1);
+    lihatStatistik(&buku1);
+    lihatStatistik(&peminjam1);
+
+    petugas1.setLevelAkses("SuperUser");
+    admin1.lihatAksesPetugas(petugas1);
+
+    return 0;
+}
