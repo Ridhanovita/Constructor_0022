@@ -16,3 +16,11 @@ public:
     }
 
 } bukunya;
+
+int main()
+{
+    //buku.serJudul("Matematika");
+    //cout << bukunya.getJudul();
+    cout << bukunya.setJudul("Matematika").getJudul(); //chain function calls
+    return 0;
+}
